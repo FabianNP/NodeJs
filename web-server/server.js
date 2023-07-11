@@ -1,7 +1,7 @@
 const http = require("http");
 const path = require("path");
 const fs = require("fs");
-const fsPromises = require("fs").promises;
+const { readFile } = require("fs/promises");
 
 const logEvents = require("./logEvents");
 const EventEmitter = require("events");
@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3500;
 
 const serveFile = async (filePath, contentType, response) => {
   try {
-    const rawData = await fsPromises.readFile(
+    const rawData = await readFile(
       filePath,
       !contentType.includes("image") ? "utf8" : ""
     );
@@ -96,3 +96,4 @@ const server = http.createServer((req, res) => {
   }
 });
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
