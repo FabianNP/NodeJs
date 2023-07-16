@@ -1,0 +1,28 @@
+-- (JWT)JSON WEB TOKEN -- Notes
+
+-- Access Token and a Refresh Token
+-- Access Token = Short Time
+-- Refresh Token = Long Time
+
+-- HAZARDS: 
+  -- XSS: Cross-Site Scripting
+  -- CSRF: CS Request Forgery
+-- Acces Token:
+  -- Sent as JSON
+  -- Client stores in memory
+  -- Do NOT store in local storage or cookie
+-- Refresh Token:
+  -- Sent as httpOnly cookie
+  -- Not accessible via JavaScript
+  -- Must have expiry at some point
+  
+-- Access Token process: 
+  -- Issued at Authorization
+  -- Client uses for API Access until expires
+  -- Verified with Middleware
+  -- New token issued at Refresh request
+-- Refres Token proccess: 
+  -- Issued at Authorization
+  -- Client uses to request new Access Token
+  -- Verified with endpoint & database
+  -- Must be allowed to expire or logout
